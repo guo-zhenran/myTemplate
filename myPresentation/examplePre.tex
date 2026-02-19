@@ -1,0 +1,207 @@
+% !TEX program = pdflatex
+\documentclass{beamer}
+\usepackage{myPresentation}  
+
+% 标题页信息
+\title[Demonstration of \texttt{myPresentation}]{the \texttt{myPresentation} Beamer Theme}
+\subtitle{A Comprehensive Demonstration and Guide to Beamer}
+\author{Zhenran Guo\inst{1} \and DeepSeek\inst{2}}
+\institute{
+  \inst{1} School of Economics, Shanghai University of Finance and Economics \\
+  \inst{2} DeepSeek AI
+}
+\date{\today}
+
+\begin{document}
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Core Features of the Theme}
+
+\begin{frame}{Color Palette and Typography}
+This theme defines a set of harmonious colors:
+\begin{itemize}
+    \item \emphblue{Primary (dark blue)} for structure and titles.
+    \item \emphred{Alert (brick red)} for important warnings.
+    \item \emphgreen{Example (dark cyan)} for illustrative content.
+\end{itemize}
+\pause
+It also uses \texttt{newpxmath} for mathematical typography, e.g.,
+$$
+\E[X] = \int_{\R} x\, dF(x), \quad \Var(Y) = \E[Y^2] - (\E[Y])^2.
+$$
+\end{frame}
+
+\begin{frame}{Block Environments}
+Three types of blocks are predefined:
+\begin{block}{Standard Block}
+This is a regular block with light blue background.
+\end{block}
+\pause
+\begin{alertblock}{Alert Block}
+Use it to highlight critical points.
+\end{alertblock}
+\pause
+\begin{exampleblock}{Example Block}
+Suitable for examples or positive remarks.
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Custom Box Environments}
+The package also provides three handy environments:
+\begin{infobox}{Info Box}
+A compact block with small font, ideal for additional notes.
+\end{infobox}
+\pause
+\begin{alertbox}{Alert Box}
+Same as alertblock but with smaller text.
+\end{alertbox}
+\pause
+\begin{examplebox}{Example Box}
+For concise examples.
+\end{examplebox}
+\end{frame}
+
+\begin{frame}{Theorem-like Environments}
+The style loads \texttt{amsthm} and defines several environments:
+\begin{theorem}[Pythagorean Theorem]
+In a right triangle, $a^2 + b^2 = c^2$.
+\end{theorem}
+\pause
+\begin{proof}
+We leave it as an exercise to the reader.
+\end{proof}
+\pause
+\begin{definition}[Derivative]
+$f'(x) = \lim_{h\to 0} \frac{f(x+h)-f(x)}{h}$.
+\end{definition}
+\pause
+\begin{remark}
+All environments follow the standard \texttt{amsthm} formatting.
+\end{remark}
+\end{frame}
+
+\begin{frame}{Custom Math Commands}
+Useful shortcuts are predefined:
+$$
+\R,\ \N,\ \C,\ \E,\ \Var,\ \Cov,\ \mat{A},\ \vct{x}.
+$$
+Example: $\mat{A}\vct{x} = \lambda \vct{x}$.
+
+\note{This is a speaker's notes, which you may refer to while presenting your work.}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Notes and Annotations}
+    \texttt{myPresentation} is set to show the speaker's notes on the second screen.
+    \begin{examplebox}{Example of output}
+        \begin{center}
+    \includegraphics[width=0.8\textwidth]{Note_example.png}    
+    \end{center}
+    \end{examplebox}
+    
+    I recommend using \href{https://github.com/Cimbali/pympress}{\emphred{pympress}} to play the pdf output.
+    \begin{examplebox}{Playing using pympress}
+        \begin{center}
+    \includegraphics[width=0.6\textwidth]{pympress_example.png}    
+    \end{center}
+    \end{examplebox}
+\end{frame}
+
+\section{Overlay Specifications in Beamer}
+
+\begin{frame}{Basic Overlays: \texttt{\textbackslash pause}}
+This text appears first.
+\pause
+This appears second.
+\pause
+This appears third.
+\end{frame}
+
+\begin{frame}{Item by Item with \texttt{\textbackslash pause}}
+\begin{itemize}
+    \item First item \pause
+    \item Second item \pause
+    \item Third item
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Using \texttt{\textbackslash only} and \texttt{\textbackslash onslide}}
+\only<1>{This appears only on slide 1.}
+\only<2>{This appears only on slide 2.}
+\onslide<3>{This appears on slide 3 and stays.}
+\end{frame}
+
+\begin{frame}{More Complex Overlays with \texttt{< >}}
+\begin{itemize}[<+-| alert@+>]
+    \item This item will be highlighted when it appears.
+    \item So will this one.
+    \item And this one.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Combining Overlays with Graphics}
+\centering
+\includegraphics<1>[width=0.3\textwidth]{example-image-a}%
+\includegraphics<2>[width=0.3\textwidth]{example-image-b}%
+\includegraphics<3>[width=0.3\textwidth]{example-image-c}
+
+\onslide<1>{This is image A.}
+\onslide<2>{This is image B.}
+\onslide<3>{This is image C.}
+\end{frame}
+
+\begin{frame}{Text Replacement with \texttt{\textbackslash only}}
+\only<1>{Version 1 of the text.}
+\only<2>{Version 2 of the text.}
+\only<3>{Version 3 of the text.}
+\end{frame}
+
+\begin{frame}{Incremental Uncovering with \texttt{\textbackslash uncover}}
+\uncover<1->{This is visible from slide 1 onward.}
+\uncover<2->{This is visible from slide 2 onward.}
+\uncover<3->{This is visible from slide 3 onward.}
+\end{frame}
+
+\begin{frame}{Using \texttt{\textbackslash visible} and \texttt{\textbackslash invisible}}
+\visible<1>{Only visible on slide 1.}
+\visible<2>{Only visible on slide 2.}
+\invisible<1>{This is invisible on slide 1 but appears on slide 2.}
+\end{frame}
+
+\begin{frame}{Overlay Specifications on Commands}
+\textbf<1>{Bold on slide 1 only.}
+\textbf<2>{Bold on slide 2 only.}
+\textbf<3>{Bold on slide 3 only.}
+\end{frame}
+
+\section{Special Pages}
+
+\begin{frame}{Footline and Header}
+The footline displays the short title, current section, and frame number. The header shows navigation (if enabled). 
+\end{frame}
+
+\makereferencespage[
+  \bibitem{knuth1984} D. E. Knuth, \emph{The \TeX book}, Addison-Wesley, 1984.
+]
+
+\makethankyoupage[takeaway={Hope \texttt{myPresentation} Beamer Theme and the guide to layout help you with making professional slides!}]
+
+\iffalse
+% no space before email and ='s, extremely important!!!
+\makethankyoupage[email =\href{mailto:john.doe@example.com}{john.doe@example.com},
+  homepage =\href{https://johndoe.com}{johndoe.com},
+  source =\href{https://github.com/johndoe}{github.com/johndoe},
+  takeaway ={Beamer overlays make presentations dynamic and engaging!}
+]
+\fi
+
+
+\end{document}

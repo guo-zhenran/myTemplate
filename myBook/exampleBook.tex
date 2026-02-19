@@ -1,0 +1,201 @@
+% !TEX program = pdflatex
+\documentclass{myBook}
+
+\title{\texttt{myBook} Class: A Comprehansive Demonstration}
+\author{Zhenran Guo \thanks{With DeepSeek writing codes and examples.}}
+\date{\today}
+
+\begin{document}
+% Include the title page, which is located in the FrontMatter subfolder.
+\input{./FrontMatter/titlepage}
+
+% Create the book's title page.
+\maketitle\pagebreak
+
+% Include the preface page from the FrontMatter subfolder.
+\input{./FrontMatter/preface}
+
+% Include the acknowledgement page from the FrontMatter subfolder.
+\input{./FrontMatter/acknowledgement}
+
+\tableofcontents
+
+\chapter{Introduction}
+This document serves as a comprehensive demonstration of the custom \texttt{myBook} \LaTeX\ class. It showcases the various features provided by the class, including theorem environments, code listings, custom commands, list environments, algorithms, and more. The class is based on the standard \texttt{book} class and includes many useful packages and customisations.
+
+\section{Overview of Features}
+The \texttt{myBook} class includes:
+\begin{itemize}
+    \item Page layout with wide margins (3.85~cm left/right, 4~cm top/bottom).
+    \item Palatino-inspired fonts (\texttt{newpxtext} and \texttt{newpxmath}) and Courier for monospaced text.
+    \item Preloaded mathematical packages (\texttt{amsmath}, \texttt{amssymb}, \texttt{amsthm}) with careful conflict avoidance.
+    \item Colour definitions for general use and for Python code highlighting.
+    \item A rich set of theorem environments (theorem, lemma, proposition, corollary, axiom, definition, conjecture, example, remark, note, case).
+    \item Special referencing commands that include theorem names (\texttt{\textbackslash thmref}, \texttt{\textbackslash propref}, etc.).
+    \item Code environments for Python (\texttt{pythoncode}, \texttt{pythoncodenotitle}, \texttt{\textbackslash pythoninline}).
+    \item Custom mathematical commands (\texttt{\textbackslash R}, \texttt{\textbackslash N}, \texttt{\textbackslash Q}, \texttt{\textbackslash diam}, \texttt{\textbackslash cball}, \texttt{\textbackslash oball}, \texttt{\textbackslash Int}, \texttt{\textbackslash col}, \texttt{\textbackslash row}).
+    \item A special list environment for case analyses (\texttt{casenv}).
+    \item Support for algorithms via \texttt{algorithm2e}.
+    \item Fancy headers and footers with chapter/section marks.
+    \item Hyperlinked cross-references (with purple links).
+    \item Bibliography support using \texttt{natbib}.
+\end{itemize}
+
+\chapter{Theorem Environments}
+The class provides several theorem-like environments. They are numbered by section and can be referenced either by standard \texttt{\textbackslash label}/\texttt{\textbackslash ref} or using the custom commands that display the theorem name.
+
+\section{Theorems, Lemmas, Propositions and Corollaries}
+\begin{theorem}[Pythagorean theorem]\namedlabel{thm:pythagoras}{Pythagorean theorem}
+In a right triangle, the square of the hypotenuse equals the sum of the squares of the other two sides:
+$$
+a^2 + b^2 = c^2.
+$$
+\end{theorem}
+
+\begin{lemma}[Euclid's lemma]\namedlabel{lem:euclid}{Euclid's lemma}
+If a prime divides the product of two integers, then it divides at least one of those integers.
+\end{lemma}
+
+\begin{proposition}\namedlabel{prop:distributive}{Distributive property}
+For all real numbers $x, y, z$, we have $x(y+z) = xy + xz$.
+\end{proposition}
+
+\begin{corollary}\namedlabel{cor:odd square}{}
+The square of an odd integer is odd.
+\end{corollary}
+
+We can now reference these results: \thmref{thm:pythagoras}, \lemmaref{lem:euclid}, \propref{prop:distributive} and \corref{cor:odd square}. Notice that the custom commands automatically insert the theorem name if one was provided via \texttt{\textbackslash namedlabel}.
+
+\section{Axioms and Definitions}
+\begin{axiom}[Completeness axiom]\namedlabel{ax:completeness}{Completeness}
+Every non‑empty set of real numbers that is bounded above has a least upper bound.
+\end{axiom}
+
+\begin{definition}[Derivative]\namedlabel{def:derivative}{Derivative}
+Let $f$ be a real‑valued function defined on an open interval containing $a$. The derivative of $f$ at $a$ is
+$$
+f'(a) = \lim_{h\to 0}\frac{f(a+h)-f(a)}{h},
+$$
+provided the limit exists.
+\end{definition}
+
+\section{Examples and Remarks}
+\begin{example}\namedlabel{ex:quadratic}{Quadratic formula}
+The solutions of $ax^2+bx+c=0$ (with $a\neq 0$) are
+$$
+x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}.
+$$
+\end{example}
+
+\begin{remark}
+This is a simple remark without a name.
+\end{remark}
+
+\begin{note}
+Note that all theorem environments are correctly styled (plain, definition, remark) according to the \texttt{amsthm} package.
+\end{note}
+
+\section{Case Environment}
+The class also defines a \texttt{case} environment (unnumbered) and a custom list \texttt{casenv} for enumerated cases. Here is an example:
+\begin{case}
+This is a single case.
+\end{case}
+
+\begin{casenv}
+\item First enumerated case.
+\item Second enumerated case.
+\item Third enumerated case.
+\end{casenv}
+
+\chapter{Code Environments}
+Python code can be displayed in framed boxes with line numbers and syntax highlighting. The class provides three environments and two inline commands.
+
+\section{Displayed Code Blocks} \label{sec:code}
+Use \texttt{pythoncode} for a titled box (default title is empty, but can be added via options) and \texttt{pythoncodenotitle} for a box with no title.
+\begin{pythoncode}[title=Simple Python function]
+def factorial(n):
+    """Return the factorial of n."""
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+# Test the function
+print(factorial(5))
+\end{pythoncode}
+
+\begin{pythoncodenotitle}
+import numpy as np
+x = np.linspace(0, 2*np.pi, 100)
+y = np.sin(x)
+\end{pythoncodenotitle}
+
+\section{Inline Code}
+For short snippets inside text, use \texttt{\textbackslash pythoninline} (framed) or \texttt{\textbackslash pythoninlinenoframe} (unframed). For example:
+The command \pythoninline{print("Hello, world!")} prints a greeting. You can also use \pythoninlinenoframe{lambda x: x**2} without a frame.
+
+\chapter{Custom Commands}
+The class defines several useful mathematical shorthand commands:
+
+\begin{itemize}
+    \item $\R$ for the real numbers.
+    \item $\N$ for the natural numbers.
+    $\Q$ for the rational numbers.
+    \item $\diam(A)$ for the diameter of a set $A$.
+    \item $\cball(x,r)$ for the closed ball and $\oball(x,r)$ for the open ball.
+    \item $\Int{S}$ for the interior of a set $S$.
+    \item $\col(A)$ and $\row(A)$ for the column space and row space of a matrix $A$.
+\end{itemize}
+
+Example usage: $\cball(0,1) = \{x \in \R^n : \|x\| \le 1\}$, $\Int{\cball(0,1)} = \oball(0,1)$.
+
+Another custom command is \texttt{\textbackslash undersign}, which places a signature at the bottom right of the page:
+\undersign
+
+\chapter{List Environments}
+The standard \texttt{itemize} and \texttt{enumerate} lists have been customised with reduced spacing and specific indentation:
+\begin{itemize}
+    \item First item
+    \item Second item
+        \begin{itemize}
+            \item Nested item
+        \end{itemize}
+\end{itemize}
+
+\begin{enumerate}
+    \item First
+    \item Second
+    \item Third
+\end{enumerate}
+
+\chapter{Algorithm Environment}
+Algorithms can be typeset using the \texttt{algorithm2e} package (loaded with the \texttt{algoruled} option). Here is a simple example:
+
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{An integer $n \ge 0$}
+\KwResult{$n!$}
+\If{$n = 0$}{
+    \Return 1\;
+}
+\Else{
+    \Return $n \cdot \text{factorial}(n-1)$\;
+}
+\caption{Recursive factorial}
+\end{algorithm}
+
+\chapter{Other Features}
+\section{Headers and Footers}
+The page style is set to \texttt{fancy} with the chapter/section mark in the header and the page number in the outer corner. This page itself demonstrates the header (the current chapter name appears on even pages, the section name on odd pages).
+
+\section{Hyperlinks and Cross-References}
+All cross-references (including citations) are coloured purple. For example, you can jump back to Theorem~\ref{thm:pythagoras} or to Section~\ref{sec:code}. The hyperlinks are active in the PDF.
+
+\section{Bibliography Support}
+The class loads \texttt{natbib} and provides a default bibliography style \texttt{apalike}. You can change the style with \texttt{\textbackslash setbibstyle}. A sample citation: \cite{knuth:1984}.
+
+\bibliographystyle{apalike}
+\bibliography{refs}
+
+\end{document}
