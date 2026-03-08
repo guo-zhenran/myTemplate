@@ -208,13 +208,13 @@
 \usepackage[british]{babel}
 \usepackage{booktabs}
 \usepackage[2.0, compress]{bxpdfver}
+\usepackage[utf8]{inputenc}
 \usepackage{csquotes}
 \usepackage[onehalfspacing]{setspace}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage{float}
 \usepackage[bottom, hang, symbol]{footmisc}
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{mdframed}
 \usepackage[babel=true, final]{microtype}
@@ -229,6 +229,7 @@
 \usepackage{wrapfig}
 
 % ================ Header and footer settings ================
+\setlength{\headheight}{14pt}
 \pagestyle{fancy}
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \fancyfoot{}
@@ -272,7 +273,6 @@
   filecolor=python-purple,
   linkcolor=python-purple,
   urlcolor=python-purple,
-  bookmarks=true,
   frenchlinks=true,
   pdfencoding=unicode,
   pdftitle={Name of the Book},
@@ -297,7 +297,7 @@
 \newcommand{\diam}{\operatorname{diam}}
 \newcommand{\cball}{\bar{\mathbb{B}}}
 \newcommand{\oball}{\mathbb{B}}
-\newcommand{\Int}[1]{\overset{\circ}{#1}}
+\newcommand{\Int}[1]{{#1}^{\circ}}
 \newcommand{\col}{\operatorname{Col}}
 \newcommand{\row}{\operatorname{Row}}
 \newcommand{\R}{\mathbb{R}}
