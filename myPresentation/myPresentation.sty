@@ -1,59 +1,64 @@
 % myPresentation.sty
-% Custom Beamer theme template
-
+% Custom Beamer theme – cleaned and enhanced
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{myPresentation}[2024/01/01 Custom Beamer Theme]
 
+% ================ Required packages ================
+\usepackage{etoolbox}          % for \ifdefempty
+\usepackage{pgfkeys}           % key-value for thankyou page
+\usepackage{xcolor}            % color definitions
+\usepackage{array, multirow, nicematrix, listings, tikz}
+\usetikzlibrary{matrix, positioning}
+
+% ================ Fonts (LuaLaTeX / XeLaTeX) ================
+\usepackage{fontspec}
+\setmainfont{Optima Regular}[
+    UprightFont    = *,
+    BoldFont       = Optima Bold,
+    ItalicFont     = Optima Italic,
+    BoldItalicFont = Optima Bold Italic,
+]
+
+\usepackage{unicode-math}
+\setmathfont{ArsenalMath-Sans.otf}
+
+% ================ Beamer mode & base settings ================
 \mode<presentation>
+\setbeameroption{show notes on second screen=right}
+\usetheme{boxes}
+\usecolortheme{default}
+\usefonttheme{serif}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{caption}[numbered]
 
-% 1. Basic theme settings
-\usetheme{boxes}              % Use boxes theme as a base
-\usecolortheme{default}       % Default color theme, will be overridden later
-\usefonttheme{professionalfonts}  % Use professional fonts theme
-%\useoutertheme[subsection=false]{miniframes}
-\setbeamertemplate{navigation symbols}{}  % Remove navigation symbols
-\setbeamertemplate{caption}[numbered]     % Numbered captions for figures/tables
+% ================ Color palette ================
+\definecolor{primary}{HTML}{08457E}
+\definecolor{secondary}{HTML}{B02A30}
+\definecolor{tertiary}{HTML}{006400}
+\definecolor{alert}{HTML}{B22222}
+\definecolor{example}{HTML}{008B8B}
+\definecolor{lightblue}{HTML}{E6F0FA}
+\definecolor{lightgray}{HTML}{F5F5F5}
+\definecolor{mediumgray}{HTML}{808080}
+\definecolor{darkgray}{HTML}{424242}
 
-% 2. Color definitions - based on elegant theme's dark blue scheme
-\RequirePackage{xcolor}
-
-% Main color definitions
-\definecolor{primary}{HTML}{08457E}      % Main color: dark blue
-\definecolor{secondary}{HTML}{B02A30}    % Secondary color: dark red
-\definecolor{tertiary}{HTML}{006400}     % Tertiary color: dark green
-\definecolor{alert}{HTML}{B22222}        % Alert color: brick red
-\definecolor{example}{HTML}{008B8B}      % Example color: dark cyan
-
-% Auxiliary colors
-\definecolor{lightblue}{HTML}{E6F0FA}    % Light blue background
-\definecolor{lightgray}{HTML}{F5F5F5}    % Light gray background
-\definecolor{mediumgray}{HTML}{808080}   % Medium gray
-\definecolor{darkgray}{HTML}{424242}     % Dark gray
-
-% 3. Apply colors to Beamer elements
-% 3.1 Structure colors
+% ================ Apply colors ================
 \setbeamercolor{structure}{fg=primary}
 \setbeamercolor{normal text}{fg=darkgray}
 \setbeamercolor{alerted text}{fg=alert}
 \setbeamercolor{example text}{fg=example}
-
-% 3.2 Title colors
 \setbeamercolor{title}{fg=primary}
 \setbeamercolor{frametitle}{fg=primary}
 \setbeamercolor{framesubtitle}{fg=mediumgray}
 \setbeamercolor{title in head/foot}{fg=primary}
 \setbeamercolor{author in head/foot}{fg=mediumgray}
 \setbeamercolor{date in head/foot}{fg=mediumgray}
-
-% 3.3 Block environment colors
 \setbeamercolor{block title}{bg=lightblue, fg=primary}
 \setbeamercolor{block body}{bg=lightblue!30}
 \setbeamercolor{block title example}{bg=lightgray, fg=example}
 \setbeamercolor{block body example}{bg=lightgray!30}
 \setbeamercolor{block title alerted}{bg=lightblue!50!red!10, fg=alert}
 \setbeamercolor{block body alerted}{bg=lightblue!50!red!5}
-
-% 3.4 List colors
 \setbeamercolor{item}{fg=primary}
 \setbeamercolor{subitem}{fg=primary}
 \setbeamercolor{subsubitem}{fg=primary}
@@ -61,140 +66,102 @@
 \setbeamercolor{enumerate subitem}{fg=primary}
 \setbeamercolor{enumerate subsubitem}{fg=primary}
 \setbeamercolor{description item}{fg=primary}
-
-% 3.5 Header and footer colors
 \setbeamercolor{section in head/foot}{fg=primary}
 \setbeamercolor{subsection in head/foot}{fg=mediumgray}
 \setbeamercolor{footline}{fg=mediumgray}
 
-% 4. Font settings enhancements
-\setbeamerfont{title}{size=\Large, family=\sffamily,series=\bfseries}
-\setbeamerfont{frametitle}{size=\large, family=\sffamily}
-\setbeamerfont{framesubtitle}{size=\small, family=\sffamily}
-\setbeamerfont{block title}{family=\sffamily}
-\setbeamerfont{block title example}{family=\sffamily}
-\setbeamerfont{block title alerted}{family=\sffamily}
-\setbeamerfont{caption name}{family=\sffamily}
+% ================ Font settings ================
+\setbeamerfont{title}{size=\Large, family=\rmfamily, series=\bfseries}
+\setbeamerfont{frametitle}{size=\large, family=\rmfamily}
+\setbeamerfont{framesubtitle}{size=\small, family=\rmfamily}
+\setbeamerfont{block title}{family=\rmfamily}
+\setbeamerfont{block title example}{family=\rmfamily}
+\setbeamerfont{block title alerted}{family=\rmfamily}
+\setbeamerfont{caption name}{family=\rmfamily}
 
-% 5. Load necessary packages
-\RequirePackage{expl3,xparse,etoolbox,pgfkeys} 
-
-% ================ Math font settings ================
-% Use newpxmath math font
-\usepackage{newpxmath}
-
-% ================ Solution to avoid package conflicts ================
-% Load core math packages first to avoid later conflicts
-\usepackage{amsmath}
-\usepackage{amsfonts}
-
-% Special handling for amsthm: release potentially conflicting commands before loading
-\makeatletter
-\@ifpackageloaded{amssymb}{}{
-  % If amssymb is not loaded yet, release potentially conflicting commands
-  \let\openbox\undefined
-  \let\Bbbk\undefined
-}
-\makeatother
-
-% Load amsthm but avoid redefining openbox
-\RequirePackage{amsthm}
-
-% Now safely load amssymb
-\usepackage{amssymb}
-
-% ================ Other math-related packages ================
-\usepackage{array}
-\usepackage{multirow}
-\usepackage{nicematrix}
-\usepackage{listings}
-
-% ================ TikZ drawing support ================
-\usepackage{tikz}
-\usetikzlibrary{matrix, positioning}
-
-% ================ Custom math commands ================
-\newcommand{\mat}[1]{\mathbf{#1}}      
+% ================ Math shortcuts ================
+\newcommand{\mat}[1]{\mathbf{#1}}
 \newcommand{\vct}[1]{\boldsymbol{#1}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\Prob}{\mathbb{P}}
 \newcommand{\Var}{\operatorname{Var}}
 \newcommand{\Cov}{\operatorname{Cov}}
 \newcommand{\tp}{^{\prime}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
 
-% ================ Math environment names ================
-% Ensure consistency with myBook.cls
-\providecommand{\casename}{Case}
-\providecommand{\claimname}{Claim}
-\providecommand{\conjecturename}{Conjecture}
-\providecommand{\corollaryname}{Corollary}
-\providecommand{\definitionname}{Definition}
-\providecommand{\examplename}{Example}
-\providecommand{\exercisename}{Exercise}
-\providecommand{\factname}{Fact}
-\providecommand{\lemmaname}{Lemma}
-\providecommand{\problemname}{Problem}
-\providecommand{\propositionname}{Proposition}
-\providecommand{\remarkname}{Remark}
-\providecommand{\solutionname}{Solution}
-\providecommand{\theoremname}{Theorem}
-\providecommand{\axiomname}{Axiom}
+% ================ Theorem environments ================
+\makeatletter
+\@ifundefined{theorem}{%
+  \theoremstyle{plain}
+  \newtheorem{theorem}{Theorem}[section]
+}{}
+\@ifundefined{proposition}{%
+  \theoremstyle{plain}
+  \newtheorem{proposition}[theorem]{Proposition}
+}{}
+\@ifundefined{conjecture}{%
+  \theoremstyle{plain}
+  \newtheorem{conjecture}[theorem]{Conjecture}
+}{}
+\@ifundefined{axiom}{%
+  \theoremstyle{plain}
+  \newtheorem{axiom}[theorem]{Axiom}
+}{}
+\@ifundefined{definition}{%
+  \theoremstyle{definition}
+  \newtheorem{definition}{Definition}[section]
+}{}
+\@ifundefined{example}{%
+  \theoremstyle{definition}
+  \newtheorem{example}{Example}[section]
+}{}
+\@ifundefined{exercise}{%
+  \theoremstyle{definition}
+  \newtheorem{exercise}{Exercise}[section]
+}{}
+\@ifundefined{assumption}{%
+  \theoremstyle{definition}
+  \newtheorem{assumption}{Assumption}[section]
+}{}
+\@ifundefined{remark}{%
+  \theoremstyle{remark}
+  \newtheorem*{remark}{Remark}
+}{}
+\@ifundefined{note}{%
+  \theoremstyle{remark}
+  \newtheorem*{note}{Note}
+}{}
+\makeatother
 
-% 6. Math environment definitions - simplified version
-% 6.1 Define environments using amsthm standard way
-\theoremstyle{plain}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{axiom}[theorem]{Axiom}
-
-\theoremstyle{definition}
-\newtheorem{exercise}{Exercise}[section]
-\newtheorem{assumption}{Assumption}
-
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-
-% 6.2 Custom proof environment - remove block, allow custom name
-% Save original proof environment definitions
-\let\oldproof\proof
-\let\endoldproof\endproof
-
-% Redefine proof environment
-\renewenvironment{proof}[1][\proofname]{
-  \par
-  \vspace{0.5em}
-  \noindent\textbf{#1:}\quad
-  \itshape
-}{
-  \hfill$\square$
-  \par
-  \vspace{0.5em}
+% ================ Custom proof environment ================
+\renewenvironment{proof}[1][\proofname]{%
+  \par\vspace{0.5em}
+  \noindent\textbf{#1:}\quad\itshape
+}{%
+  \hfill$\square$\par\vspace{0.5em}
 }
-
-% Allow user to change proof name via \renewcommand{\proofname}{...}
 \providecommand{\proofname}{Proof}
 
-% 7. Block environment style adjustments
-% 7.1 Uniform block margins and rounded corners
+% ================ Block styling ================
 \setbeamertemplate{blocks}[rounded][shadow=true]
-\addtobeamertemplate{block begin}{%
-  \vspace*{2mm}%
-}{}
-\addtobeamertemplate{block end}{%
-  \vspace*{2mm}%
-}{}
+\addtobeamertemplate{block begin}{\vspace*{2mm}}{}
+\addtobeamertemplate{block end}{\vspace*{2mm}}{}
 
-% 8. List style adjustments
+% ================ List styling ================
 \setbeamertemplate{itemize items}[circle]
 \setbeamertemplate{itemize subitem}[circle]
 \setbeamertemplate{itemize subsubitem}[circle]
 
-% 9. Header and footer settings - simplified version
-\setbeamertemplate{footline}{
+% ================ Footline ================
+\setbeamertemplate{footline}{%
   \leavevmode%
   \hbox{%
     \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,left]{title in head/foot}%
-    \hspace*{2em}  \usebeamerfont{title in head/foot}\insertshorttitle
+      \hspace*{2em}\usebeamerfont{title in head/foot}\insertshorttitle
     \end{beamercolorbox}%
     \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
       \usebeamerfont{date in head/foot}\insertsection%
@@ -206,119 +173,80 @@
   \vskip0pt%
 }
 
-% 10. Figure/table settings
+% ================ Caption style ================
 \setbeamertemplate{caption label separator}{: }
 \setbeamerfont{caption}{size=\footnotesize}
 
-% 11. Table of contents settings - modify to display section name separately before each section
-% 11.1 Define section page template - simplified version: keep only "SECTION" and section name
-\defbeamertemplate*{section page}{custom}[1][]{
+% ================ Section page ================
+\defbeamertemplate*{section page}{custom}[1][]{%
   \begingroup
     \centering
-    % Vertical centering
     \vspace*{\fill}
-    
     {\color{darkgray}\usebeamerfont{section in toc}
-    \fontsize{14}{10}\selectfont\sffamily
-    SECTION \insertsectionnumber\par}
-    
+     \fontsize{14}{10}\selectfont\sffamily
+     SECTION \insertsectionnumber\par}
     \vspace*{0.5cm}
-    
     {\color{primary}\usebeamerfont{frametitle}
-    \fontsize{16}{10}\selectfont\bfseries\sffamily
-    \insertsectionhead\par}
-    
+     \fontsize{16}{10}\selectfont\bfseries\sffamily
+     \insertsectionhead\par}
     \vspace*{\fill}
   \endgroup
 }
-
-% 11.2 Insert section page before each section
-\AtBeginSection[]{
+\AtBeginSection[]{%
   \begin{frame}[plain,noframenumbering]
     \usebeamertemplate{section page}
   \end{frame}
 }
 
-% 11.3 Table of contents style - changed to dark gray
+% ================ Table of contents ================
 \setbeamertemplate{section in toc}[square]
 \setbeamertemplate{subsection in toc}[square]
 \setbeamerfont{section in toc}{size=\normalsize, family=\sffamily}
 \setbeamerfont{subsection in toc}{size=\small, family=\sffamily}
-
-% Table of contents color settings - all changed to dark gray
 \setbeamercolor{section in toc}{fg=darkgray}
 \setbeamercolor{subsection in toc}{fg=darkgray!80}
 
-% 12. Margin settings
+% ================ Margins ================
 \setbeamersize{text margin left=10mm, text margin right=10mm}
 
-% 13. Custom commands and environments
-% 13.1 Emphasized text commands
-\newcommand{\emphblue}[1]{\textcolor{primary}{\sffamily\bfseries #1}}
-\newcommand{\emphred}[1]{\textcolor{alert}{\sffamily\bfseries #1}}
-\newcommand{\emphgreen}[1]{\textcolor{example}{\sffamily\bfseries #1}}
-
-% 13.2 Math environment shortcuts
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\C}{\mathbb{C}}
-
-% 13.3 Define custom box environments
+% ================ Custom box environments ================
 \newenvironment{infobox}[1]{%
-  \begin{block}{#1}
-    \small
+  \begin{block}{#1}\small
 }{%
   \end{block}
 }
-
 \newenvironment{alertbox}[1]{%
-  \begin{alertblock}{#1}
-    \small
+  \begin{alertblock}{#1}\small
 }{%
   \end{alertblock}
 }
-
 \newenvironment{examplebox}[1]{%
-  \begin{exampleblock}{#1}
-    \small
+  \begin{exampleblock}{#1}\small
 }{%
   \end{exampleblock}
 }
 
-% 13.4 Custom references and thank you page commands
-% References page command (unchanged)
-\newcommand{\makereferencespage}[1][]{%
-  \begin{frame}{References}
-    \vspace*{-0.3cm}
-    \begin{thebibliography}{9}
-      #1
-    \end{thebibliography}
-  \end{frame}
-}
+% ================ Emphasized text ================
+\newcommand{\emphblue}[1]{\textcolor{primary}{\sffamily\bfseries #1}}
+\newcommand{\emphred}[1]{\textcolor{alert}{\sffamily\bfseries #1}}
+\newcommand{\emphgreen}[1]{\textcolor{example}{\sffamily\bfseries #1}}
 
-% Use pgfkeys key-value system
+% ================ Thank you page (key‑value) ================
 \pgfkeys{
   /thankyou/.is family, /thankyou,
-  % Define keys and default values
   default/.style = {
-email = \href{mailto:guo.zhenran@stu.sufe.edu.cn}{guo.zhenran@stu.sufe.edu.cn},
-homepage = \href{http://guo-zhenran.github.io}{guo-zhenran.github.io},
-source = \href{https://github.com/guo-zhenran}{github.com/guo-zhenran},
-takeaway = Hope you bring home some joy and food for thought!
+    email    = \href{mailto:guo.zhenran@stu.sufe.edu.cn}{guo.zhenran@stu.sufe.edu.cn},
+    homepage = \href{http://guo-zhenran.github.io}{guo-zhenran.github.io},
+    source   = \href{https://github.com/guo-zhenran}{github.com/guo-zhenran},
+    takeaway = Hope you bring home some joy and food for thought!
   },
-  % Set key types
-email/.store in = \thankyouemail,
-homepage/.store in = \thankyouhomepage,
-source/.store in = \thankyousource,
-takeaway/.store in = \thankyoutakeaway,
+  email/.store in    = \thankyouemail,
+  homepage/.store in = \thankyouhomepage,
+  source/.store in   = \thankyousource,
+  takeaway/.store in = \thankyoutakeaway,
 }
-
-% Set default values
 \pgfkeys{/thankyou, default}
 
-% Thank you page command - supports key-value arguments
 \newcommand{\makethankyoupage}[1][]{%
   % Save original values
   \let\origthankyouemail\thankyouemail
@@ -337,12 +265,12 @@ takeaway/.store in = \thankyoutakeaway,
       \vspace{0.5cm}
       {\Large Questions?}
       
-      \vspace{0.8cm}
+      \vspace{0.5cm}
       \begin{tabular}{cc}
         \textbf{Key Takeaway:} & \parbox{0.7\textwidth}{\thankyoutakeaway}
       \end{tabular}
-      
-      % Create information table
+
+% Create information table
       \ifdefempty{\thankyouemail}{}{%
         \vspace{0.5cm}
         \begin{tabular}{@{}ll@{}}
@@ -367,19 +295,10 @@ takeaway/.store in = \thankyoutakeaway,
   \renewcommand{\thankyoutakeaway}{\origthankyoutakeaway}
 }
 
-% Simplified thank you page command (optional, for backward compatibility)
-\newcommand{\simplethankyoupage}[1]{%
-  \makethankyoupage[takeaway=#1]%
-}
+% ================ Frame title spacing ================
+\addtobeamertemplate{frametitle}{\vspace*{0.5cm}}{\vspace*{0.2cm}}
 
-% 14. Frame title format adjustments
-\addtobeamertemplate{frametitle}{%
-  \vspace*{0.5cm}%
-}{%
-  \vspace*{0.2cm}%
-}
-
-% 15. Bibliography style
+% ================ Bibliography ================
 \setbeamertemplate{bibliography item}[text]
 \setbeamerfont{bibliography entry author}{size=\small, family=\sffamily}
 \setbeamerfont{bibliography entry title}{size=\small, family=\sffamily}
@@ -390,34 +309,11 @@ takeaway/.store in = \thankyoutakeaway,
 \setbeamercolor{bibliography entry location}{fg=mediumgray}
 \setbeamercolor{bibliography entry note}{fg=mediumgray}
 
-% 17. Load necessary packages
-\RequirePackage{tikz}
-\RequirePackage{ifthen} % Add ifthen package for conditionals
-
-% 18. Add custom section command (simplified version)
-\newcommand{\customsection}[2][]{
-  \section[#1]{#2}
-  \begin{frame}[plain,noframenumbering]
-    \centering
-    \vspace*{\fill}
-    
-    % SECTION header
-    {\color{darkgray}
-    \fontsize{14}{10}\selectfont\sffamily
-    SECTION \insertsectionnumber\par}
-    
-    \vspace*{0.5cm}
-    
-    % Main section title
-    {\color{primary}
-    \fontsize{16}{10}\selectfont\bfseries\sffamily
-    #2\par}
-    
-    \vspace*{\fill}
-  \end{frame}
+% ================ Convenience environment for long frames ================
+\newenvironment{longframe}[1][allowframebreaks]{%
+  \begin{frame}[#1]%
+}{%
+  \end{frame}%
 }
-
-\RequirePackage{pgfpages}
-\setbeameroption{show notes on second screen=right}  % or left/bottom/top
 
 \mode<all>

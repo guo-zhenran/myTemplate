@@ -1,9 +1,8 @@
-% !TEX program = pdflatex
-\documentclass{beamer}
+\documentclass[aspectratio=43]{beamer}
 \usepackage{myPresentation}  
+\usepackage{metalogo}
 
-% 标题页信息
-\title[Demonstration of \texttt{myPresentation}]{the \texttt{myPresentation} Beamer Theme}
+\title[Demonstration of \texttt{myPresentation}]{The \texttt{myPresentation} Beamer Theme}
 \subtitle{A Comprehensive Demonstration and Guide to Beamer}
 \author{Zhenran Guo\inst{1} \and DeepSeek\inst{2}}
 \institute{
@@ -14,11 +13,9 @@
 
 \begin{document}
 
-
 \begin{frame}
 \titlepage
 \end{frame}
-
 
 \begin{frame}{Outline}
 \tableofcontents
@@ -26,18 +23,18 @@
 
 \section{Core Features of the Theme}
 
-\begin{frame}{Color Palette and Typography}
-This theme defines a set of harmonious colors:
+\begin{frame}{Fonts and Typography}
+This theme uses:
 \begin{itemize}
-    \item \emphblue{Primary (dark blue)} for structure and titles.
-    \item \emphred{Alert (brick red)} for important warnings.
-    \item \emphgreen{Example (dark cyan)} for illustrative content.
+    \item \textbf{English font}: \emphblue{Optima} (a humanist sans-serif typeface) for text.
+    \item \textbf{Math font}: \emphblue{ArsenalMath-Sans} (a clean sans-serif math font) via \texttt{unicode-math}.
+    \item \textbf{Color palette}: harmonious blue, red, and green for structure, alerts, and examples.
 \end{itemize}
 \pause
-It also uses \texttt{newpxmath} for mathematical typography, e.g.,
-$$
+Example math in sans-serif style:
+\[
 \E[X] = \int_{\R} x\, dF(x), \quad \Var(Y) = \E[Y^2] - (\E[Y])^2.
-$$
+\]
 \end{frame}
 
 \begin{frame}{Block Environments}
@@ -56,9 +53,9 @@ Suitable for examples or positive remarks.
 \end{frame}
 
 \begin{frame}{Custom Box Environments}
-The package also provides three handy environments:
+The package also provides three handy environments with smaller fonts:
 \begin{infobox}{Info Box}
-A compact block with small font, ideal for additional notes.
+A compact block, ideal for additional notes.
 \end{infobox}
 \pause
 \begin{alertbox}{Alert Box}
@@ -70,49 +67,62 @@ For concise examples.
 \end{examplebox}
 \end{frame}
 
-\begin{frame}{Theorem-like Environments}
-The style loads \texttt{amsthm} and defines several environments:
-\begin{theorem}[Pythagorean Theorem]
-In a right triangle, $a^2 + b^2 = c^2$.
-\end{theorem}
-\pause
-\begin{proof}
-We leave it as an exercise to the reader.
-\end{proof}
-\pause
-\begin{definition}[Derivative]
-$f'(x) = \lim_{h\to 0} \frac{f(x+h)-f(x)}{h}$.
-\end{definition}
-\pause
-\begin{remark}
-All environments follow the standard \texttt{amsthm} formatting.
-\end{remark}
-\end{frame}
-
 \begin{frame}{Custom Math Commands}
-Useful shortcuts are predefined:
-$$
+The theme provides convenient shortcuts:
+\[
 \R,\ \N,\ \C,\ \E,\ \Var,\ \Cov,\ \mat{A},\ \vct{x}.
-$$
+\]
 Example: $\mat{A}\vct{x} = \lambda \vct{x}$.
 
-\note{This is a speaker's notes, which you may refer to while presenting your work.}
+Also available: $\Prob$, $\tp$ (transpose), $\Z$, $\Q$, etc.
+
+\note{This is a speaker's note. Use dual-screen mode to view notes.}
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Notes and Annotations}
-    \texttt{myPresentation} is set to show the speaker's notes on the second screen.
-    \begin{examplebox}{Example of output}
-        \begin{center}
-    \includegraphics[width=0.8\textwidth]{Note_example.png}    
-    \end{center}
-    \end{examplebox}
-    
-    I recommend using \href{https://github.com/Cimbali/pympress}{\emphred{pympress}} to play the pdf output.
-    \begin{examplebox}{Playing using pympress}
-        \begin{center}
-    \includegraphics[width=0.6\textwidth]{pympress_example.png}    
-    \end{center}
-    \end{examplebox}
+\begin{frame}[allowframebreaks]{Using \texttt{allowframebreaks} for Long Content}
+    This frame demonstrates the \texttt{allowframebreaks} option. When a frame has too much content, Beamer automatically splits it across multiple pages. The footline will show the frame number with a continuation suffix (e.g., 1/2, 2/2).
+
+    \begin{exampleblock}{Key Points}
+        \begin{itemize}
+            \item Add \texttt{[allowframebreaks]} to the frame options.
+            \item Use \texttt{longframe} environment as a shorthand (provided by the theme).
+            \item Ideal for lengthy text, multiple items, or long lists.
+        \end{itemize}
+    \end{exampleblock}
+
+    \begin{theorem}[Continuation Example]
+        This theorem might be long and split across pages.
+    \end{theorem}
+    \begin{proof}
+        Here is a very long proof that could span multiple pages if needed. \pause
+        More content... \pause
+        Even more... \pause
+        And more... \pause
+        Finally, we reach the end. \hfill $\square$
+    \end{proof}
+
+    \begin{itemize}
+        \item Item 1
+        \item Item 2
+        \item Item 3
+        \item Item 4
+        \item Item 5
+        \item Item 6
+        \item Item 7
+        \item Item 8
+        \item Item 9
+        \item Item 10
+        \item Item 11
+        \item Item 12
+        \item Item 13
+        \item Item 14
+        \item Item 15
+        \item Item 16
+        \item Item 17
+        \item Item 18
+        \item Item 19
+        \item Item 20
+    \end{itemize}
 \end{frame}
 
 \section{Overlay Specifications in Beamer}
@@ -188,20 +198,26 @@ This appears third.
 The footline displays the short title, current section, and frame number. The header shows navigation (if enabled). 
 \end{frame}
 
-\makereferencespage[
-  \bibitem{knuth1984} D. E. Knuth, \emph{The \TeX book}, Addison-Wesley, 1984.
-]
-
 \makethankyoupage[takeaway={Hope \texttt{myPresentation} Beamer Theme and the guide to layout help you with making professional slides!}]
 
+\begin{frame}{Compilation Instructions}
+    \begin{exampleblock}{To compile this presentation}
+        \begin{itemize}
+            \item Use \LuaLaTeX (required for \texttt{fontspec} and \texttt{unicode-math}).
+            \item Run \LuaLaTeX \texttt{examplePre.tex} at least \textbf{twice} to resolve the table of contents and cross-references.
+            \item For notes, use a PDF viewer with dual-screen support (e.g., \texttt{pympress}).
+            \item For long frames, use \texttt{[allowframebreaks]} or the \texttt{longframe} environment.
+        \end{itemize}
+    \end{exampleblock}
+\end{frame}
+
 \iffalse
-% no space before email and ='s, extremely important!!!
+% Alternative thank-you page with contact info (uncomment to use)
 \makethankyoupage[email =\href{mailto:john.doe@example.com}{john.doe@example.com},
   homepage =\href{https://johndoe.com}{johndoe.com},
   source =\href{https://github.com/johndoe}{github.com/johndoe},
   takeaway ={Beamer overlays make presentations dynamic and engaging!}
 ]
 \fi
-
 
 \end{document}
