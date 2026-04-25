@@ -1,0 +1,315 @@
+
+\documentclass{myPaper}
+
+\title{Locked In or Learning Out? \\
+       Sticky Matches and the Escape from Comfort Zone\thanks{We thank...}}
+\author{S. He\and J. Wu\and Z. Guo\thanks{hello}}
+\date{Draft Version: Apr. 2026 \\ \myUpdate{example.com}}
+
+\begin{document}
+\maketitle
+\myAbstract{This paper studies endogenous matching in a setting where individuals belong to two distinct “cultural’’ types. When same-type players are paired, they can easily settle on their own preferred cultural equilibria. When different types meet, they face conflicting interests but can potentially achieve higher efficiency by coordinating on richer, more complex patterns of play. Matching is voluntary: players may propose to others, and once a match forms, the pair interacts repeatedly for a fixed duration before the next rematching opportunity. Our theoretical and experimental results show that given frequent rematching opportunities, players tend to remain in their comfort zones---matching almost exclusively with their own type and playing their preferred cultural equilibria. In contrast, with longer interaction durations (“sticky matches’’), cross-type matches emerge and players converge to more efficient equilibrium patterns. In addition, thickness of the matching market also plays a role in fostering more cross-type matches when matching is sticky.
+}
+
+\section{The Model}
+\subsection{Immediate Rematching}
+Consider \(n\) agents indexed by \(1,2,\ldots,n\). The set of all agents is denoted by \(N=\{1,2,\ldots,n\}.\) They engage in a repeated matching process to interact. The timing of the model proceeds as follows. 
+
+\begin{itemize}
+\item Periods $2t$, for $t=0, 1, 2, ...$, are the pair formation stages in which agents can voluntarily (re)match to form pairs or remain single. 
+
+\item  Periods $2t+1$, for $t=0, 1, 2, ...$, are the interaction stages in which each pair of matched agents engage to play some game. The game between agents \(i\) and \(j\) is denoted by \(\Gamma_{ij}\) (interchangeably \(\Gamma_{ji}\)) if they are matched. The corresponding strategy sets for the two players are \(S_i^{\Gamma_{ij}}\) and \(S_j^{\Gamma_{ji}}\), respectively. The payoffs of the two players are given by \(\pi_i^{\Gamma_{ij}}(s_i, s_j)\) and \(\pi_j^{\Gamma_{ji}}(s_j, s_i)\), respectively, for any \((s_i, s_j) \in S_i^{\Gamma_{ij}} \times S_j^{\Gamma_{ji}}\). If an agent $i$ remains single, she gets a constant outside option $r_i$.
+\end{itemize}
+
+We are interested in stable outcomes, where agents’ matching patterns and interactions remain the same over time, and no one has an incentive to deviate.
+
+\begin{definition} \label{def:outcomet}
+An \textbf{outcome} consists of a \textbf{matching profile} $\mathcal{M}$ and a \textbf{strategy profile} $\mathcal{S}$ such that
+\begin{itemize}
+    \item $\mathcal{M} =\{\{i, j\}: i \ne j, \text{ and } i, j \in N\}$ is a set of disjoint unordered pairs. Agent $i$ is unmatched iff $\{i, l\} \notin \mathcal{M}$ for any $l \in N \backslash \{i \}$.
+    \item $\mathcal{S}=\{(s_i, s_j) \in S_i^{\Gamma_{ij}} \times S_j^{\Gamma_{ji}}, (i, j) \in \mathcal{M}\}$.
+\end{itemize}
+\end{definition}
+
+\noindent Let $NE_{ij} \subseteq S_i^{\Gamma_{ij}} \times S_j^{\Gamma_{ji}}$ denote the set of Nash equilibria of $\Gamma_{ij}$. So for any $(s_i^*, s_j^*) \in NE_{ij}$,
+\begin{eqnarray}
+s_i^* \in \text{arg}\max_{s_i \in S_i^{\Gamma_{ij}}}\pi_i^{\Gamma_{ij}}(s_i, s_j^*), \text{ and } s_j^* \in \text{arg}\max_{s_j \in S_j^{\Gamma_{ji}}}\pi_j^{\Gamma_{ji}}(s_j, s_i^*). \nonumber
+\end{eqnarray}
+
+\begin{definition} \label{def:Nash}
+A strategy profile $\mathcal{S}^*$ is a \textbf{Nash strategy profile}, if each matched pair is playing a Nash equilibrium. That is, for any $(s_i^*, s_j^*) \in \mathcal{S}^*$, $(s_i^*, s_j^*) \in NE_{ij}$.
+
+\end{definition}
+
+\begin{definition} \label{def:blocking}
+For an outcome ($\mathcal{M}, \mathcal{S}$), there exists a \textbf{blocking pair} if
+\begin{itemize}
+    \item[(a)] There exists $\{i, j\} \in \mathcal{M}$, $(s_i, s_j) \in \mathcal{S}$ and a strategy pair $(\hat{s}_i,\hat{s}_j)\in NE_{ij}$ such that 
+    \begin{eqnarray}
+     \pi_i^{\Gamma_{ij}}(\hat{s}_i, \hat{s}_j)>\pi_i^{\Gamma_{ij}}(s_i, s_j), \text{ and } \pi_j^{\Gamma_{ji}}(\hat{s}_j, \hat{s}_i)>\pi_j^{\Gamma_{ji}}(s_j, s_i). \nonumber
+\end{eqnarray}
+In this case, a matched pair has an incentive to jointly deviate to play another strategy pair that constitutes a Nash equilibrium.
+
+\item[(b)] There exist distinct $i, j \in N$,  $ \{i, l\}, \{j, l\} \notin \mathcal{M}$ for any $l \in N$, and a strategy pair $(\hat{s}_i,\hat{s}_j)\in NE_{ij}$ such that 
+    \begin{eqnarray} \pi_i^{\Gamma_{ij}}(\hat{s}_i, \hat{s}_j)>r_i, \text{ and } \pi_j^{\Gamma_{ji}}(\hat{s}_j, \hat{s}_i)>r_j. \nonumber
+\end{eqnarray}
+In this case, two single agents have an incentive to jointly deviate to form a match and play a strategy pair that constitutes a Nash equilibrium.
+
+\item[(c)] There exist distinct $i, j, k \in N$, $\{i, k\}\in \mathcal{M}$, $(s_i, s_k) \in \mathcal{S}$, $\{j, l\} \notin \mathcal{M}$ for any $l \in N$, and a strategy pair $(\hat{s}_i,\hat{s}_j)\in NE_{ij}$ such that 
+    \begin{eqnarray}
+ \pi_i^{\Gamma_{ij}}(\hat{s}_i, \hat{s}_j)>\pi_i^{\Gamma_{ik}}(s_i, s_k), \text{ and } \pi_j^{\Gamma_{ji}}(\hat{s}_j, \hat{s}_i)>r_j. \nonumber
+\end{eqnarray}
+In this case, an agent has an incentive to leave her current partner and jointly deviate to form a new match with a single agent and play a strategy pair that constitutes a Nash equilibrium.
+
+\item[(d)] There exist distinct $i, j, k, l \in N$,  $\{i, k\}, \{j, l\} \in \mathcal{M}$, $(s_i, s_k), (s_j, s_l) \in \mathcal{S}$, and a strategy pair $(\hat{s}_i,\hat{s}_j)\in NE_{ij}$ such that
+    \begin{eqnarray}
+   \pi_i^{\Gamma_{ij}}(\hat{s}_i, \hat{s}_j)>\pi_i^{\Gamma_{ik}}(s_i, s_k), \text{ and } \pi_j^{\Gamma_{ji}}(\hat{s}_j, \hat{s}_i)>\pi_j^{\Gamma_{jl}}(s_j, s_l). \nonumber
+\end{eqnarray}
+In this case, a pair of agents have an incentive to both leave their current partners and jointly deviate to form a new match and play a  strategy pair that constitutes a Nash equilibrium.
+\end{itemize}
+\end{definition}
+
+In the four blocking scenarios described in Definition \ref{def:blocking}, the two agents who plot to form a blocking pair are required to play a Nash equilibrium to ensure that, once a pair is formed, neither has any further incentive to deviate.
+
+\begin{definition} \label{def:stable}
+An outcome $(\mathcal{M}, \mathcal{S}^*)$ is \textbf{myopic Nash stable} if
+\begin{itemize}
+    \item[(1)] $\mathcal{S}^*$ is a Nash strategy profile \textbf{(internally stable)};
+    \item[(2)] there does not exists a blocking pair \textbf{(externally stable)};
+    \item[(3)] for any $(i, j) \in \mathcal{M}$, $\pi_i^{\Gamma_{ij}}(s_i^*, s_j^*) \ge r_i$ and $\pi_j^{\Gamma_{ji}}(s_j^*, s_i^*) \ge r_j$ \textbf{(individual rationality)}.
+    \end{itemize}
+\end{definition}
+
+This definition of stability is myopic because the agents are not forward-looking; they only check for immediate incentives to block.
+
+\subsection{Some General Results}
+Our model resembles the classic roommate problem and therefore the existence of a myopic Nash stable outcome is not guaranteed. To see this, consider three agents 1, 2, 3. Their outside options satisfy $r_1=r_2=r_3=0$. The pairwise games for the agents are given as follows:
+\begin{table}[!ht]
+\centering
+
+\begin{subtable}{0.32\textwidth}
+\centering
+\begin{tabular}
+[c]{llrc}
+&  & \multicolumn{2}{c}{2} \\
+&  & \multicolumn{1}{c}{$A$} & $B$ \\\cline{3-4}%
+1 & $A$ & \multicolumn{1}{|l}{$2,1$} & \multicolumn{1}{|l|}{$2, 0$%
+}\\\cline{3-4}
+& $B$ & \multicolumn{1}{|l}{$0, 1$} & \multicolumn{1}{|l|}{$0, 0$}\\\cline{3-4}%
+\end{tabular}
+\caption{$\Gamma_{12}$ ($\Gamma_{21}$).}
+\end{subtable}
+\hfill
+\begin{subtable}{0.32\textwidth}
+\centering
+\begin{tabular}
+[c]{llrc}
+&  & \multicolumn{2}{c}{3} \\
+&  & \multicolumn{1}{c}{$A$} & $B$ \\\cline{3-4}%
+1 & $A$ & \multicolumn{1}{|l}{$1,2$} & \multicolumn{1}{|l|}{$1, 0$%
+}\\\cline{3-4}
+& $B$ & \multicolumn{1}{|l}{$0, 2$} & \multicolumn{1}{|l|}{$0, 0$}\\\cline{3-4}%
+\end{tabular}
+\caption{$\Gamma_{13}$ ($\Gamma_{31}$).}
+\end{subtable}
+\hfill
+\begin{subtable}{0.32\textwidth}
+\centering
+\begin{tabular}
+[c]{llrc}
+&  & \multicolumn{2}{c}{3} \\
+&  & \multicolumn{1}{c}{$A$} & $B$ \\\cline{3-4}%
+2 & $A$ & \multicolumn{1}{|l}{$2,1$} & \multicolumn{1}{|l|}{$2, 0$%
+}\\\cline{3-4}
+& $B$ & \multicolumn{1}{|l}{$0, 1$} & \multicolumn{1}{|l|}{$0, 0$}\\\cline{3-4}%
+\end{tabular}
+\caption{$\Gamma_{23}$ ($\Gamma_{32}$).}
+\end{subtable}
+
+\caption{Non-existence of a myopic Nash stable outcome.}
+\end{table}
+
+In each game, $(A, A)$ is the unique Nash equilibrium. Hence, if there exists a myopic Nash stable outcome in which a pair is matched, the pair must play $(A, A)$. 
+
+ Note that $\pi_1^{\Gamma_{12}}(A,A)=2>\pi_1^{\Gamma_{13}}(A,A)=1>r_1=0$, $\pi_2^{\Gamma_{23}}(A,A)=2>\pi_2^{\Gamma_{21}}(A,A)=1>r_2=0$, and $\pi_3^{\Gamma_{31}}(A,A)=2>\pi_3^{\Gamma_{32}}(A,A)=1>r_3=0$, These imply that agent~1 prefers to match with agent~2, agent~2 prefers to match with agent~3, and agent~3 prefers to match with agent~1. This cycle of preferences ensures that any outcome would be blocked.
+
+Next, we demonstrate that the match-to-interact process has some nice equilibrium selection properties.
+
+\begin{theorem} \label{thm:pareto}
+Suppose $(\mathcal{M}, \mathcal{S}^*)$ is myopic Nash stable. Suppose $(i, j) \in \mathcal{M}$, $(s_i^*, s_j^*)\in \mathcal{S}^*$. Then $(s_i^*, s_j^*)$ is Pareto efficient within $NE_{ij}$.
+\end{theorem}
+\noindent \textit{Proof:} If not, then there exists another  $(s_i', s_j') \in NE_{ij}$, such that $\pi_i^{\Gamma_{ij}}(s'_i, s'_j)>\pi_j^{\Gamma_{ij}}(s^*_i, s^*_j)$ and $\pi_j^{\Gamma_{ji}}(s'_j, s'_i)>\pi_j^{\Gamma_{ji}}(s^*_j, s^*_i)$. Then according to Definition \ref{def:blocking} (a), $i$ and $j$ would have an incentive to jointly deviate to playing $(s_i', s_j')$. \textit{Q.E.D.}
+\\
+
+Theorem \ref{thm:pareto} demonstrates that any matched pair of agents in a stable outcome would not play a Nash equilibrium that is Pareto-dominated by another one. 
+
+In many applications, we classify agents into types. Agents of the same type still have distinct identities, but they possess identical preferences and interaction structures, and are therefore treated equivalently by others. Formally, assume that $N$ can be partitioned into $W$ groups: $N=G_1 \cup G_2 \cup ... \cup G_W$. Assume that $|G_w|>0$ and is even for any $w =1, 2, ..., K$. For any $i, j \in G_w$, $\Gamma_{il} (\Gamma_{li})=\Gamma_{jl} (\Gamma_{lj})$ for any $l \in N$.
+
+ Suppose $i \in G_w$ and $j \in G_{w'}$. For notational convenience, let $\Gamma_{ww'}$ denote $\Gamma_{ij} (\Gamma_{ji})$; $S_{ww'}$ denote $S_i^{\Gamma_{ij}}$ and $S_{w'w}$ denote $S_j^{\Gamma_{ji}}$; $\pi_{ww'}(s, s')$ denote $\pi_i^{\Gamma_{ij}}(s, s')$ and $\pi_{w'w}(s', s)$ denote $\pi_j^{\Gamma_{ji}}(s', s)$ for $(s, s') \in S_{ww'} \times S_{w'w}$; $r_w$ denote $r_i$; and $NE_{ww'}$ denote $NE_{ij}$.
+
+ \begin{theorem} \label{thm:LB}
+Suppose $i, j\in G_w$ and $k, l \in G_w'$, where $w$ and $w'$ can be identical. Suppose $(\mathcal{M}, \mathcal{S}^*)$ is a myopic Nash stable outcome where $(i, j), (k, l) \in \mathcal{M}$ and $(s_i^*, s_k^*), (s_j^*, s_l^*) \in \mathcal{S}^*$, then there doesn't exist $(s, s')\in NE_{ww'}$ such that $\pi_{ww'}(s, s') > \min\{\pi_{ww'}(s_i, s_k), \pi_{ww'}(s_j, s_l)\}$ and $\pi_{w'w}(s', s) > \min\{\pi_{w'w}(s_k, s_i), \pi_{w'w}(s_l, s_j)\}$.
+\end{theorem}
+\noindent \textit{Proof:} First, since $(\mathcal{M}, \mathcal{S}^*)$ is stable, according to Theorem \ref{thm:pareto}, $(s_i^*, s_k^*), (s_j^*, s_l^*)$ must be both Pareto efficient in $NE_{ww'}$. In other words, a matched pair of $w$ and $w'$ agents cannot both be strictly better off by playing one of the equilibrium than the other.  Without loss of generality, suppose $\pi_{ww'}(s_i^*, s_k^*) \le \pi_{ww'}(s_j^*, s_l^*)$ and $\pi_{w'w}(s_k^*, s_i^*) \ge \pi_{w'w}(s_l^*, s_j^*)$. In this case, agent $i$ and $l$ are the losers in their respective matches. 
+
+If there exists $(s, s') \in NE_{ww'}$ as described in Theorem \ref{thm:LB}, according to Definition \ref{def:blocking} (d), agent $i$ and $l$ have an incentive to leave their current partners to form a new match and play $(s, s')$, which makes both of them better off. \textit{Q.E.D.}
+\\
+
+Theorem \ref{thm:LB} shows that when we have two pairs of matches, each consisting of one agent of each of the two types $w$ and $w'$, the equilibria played by the two pairs must be ``loser-best" so that the losers have no incentive to block.
+
+We can further formally define ``lost-best" as a refinement of Nash equilibrium for own-type matches. 
+
+\begin{definition} \label{def:loser-best}
+  Let $NE_{ww}^{LB}=\text{arg}\max_{(s, s')\in NE_{ww}} \min\{ \pi_{ww}(s, s'), \pi_{ww}(s', s)\}.$ be the set of \textbf{Loser-best} Nash equilibria of $\Gamma_{ww}$. 
+\end{definition}
+
+Definition \ref{def:loser-best} characterizes the set of Nash equilibria between two identical agents such that the loser cannot get a higher payoff in another Nash equilibrium.
+
+\begin{theorem} \label{thm:LB'}
+Suppose $i, j, k, l \in G_w$. If $(\mathcal{M}, \mathcal{S}^*)$ is a myopic Nash stable outcome where $(i, j), (k, l) \in \mathcal{M}$ and $(s_i^*, s_j^*), (s_k^*, s_l^*) \in \mathcal{S}^*$, then either $(s_i^*, s_j^*)$ or $(s_k^*, s_l^*)$ or both are in $ NE_{ww}^{LB}$.
+\end{theorem}
+\noindent \textit{Proof:} Suppose that $(s_i^*, s_j^*)$ and $ (s_k^*, s_l^*)$ both are not in $ NE_{ww}^{LB}$. Without loss of generality, suppose $\pi_{ww}(s_i^*, s_j^*) \le \pi_{ww}(s_j^*, s_i^*)$ and $\pi_{ww}(s_k^*, s_l^*) \le \pi_{ww}(s_l^*, s_k^*)$. That is, agent $i$ and $k$ are the losers in their respective matches. Then, according to Definition \ref{def:blocking} (d), agent $i$ and $k$ have an incentive to leave their current partners to form a new match and play some $(\hat{s}_i, \hat{s}_k) \in NE_{ww}^{ LB}$, which makes both of them better off. \textit{Q.E.D.}
+\\
+
+We now establish the sufficient conditions for assortative matching. 
+
+\begin{definition} \label{def:assort}
+An matching profile $\mathcal{M}$ is \textbf{assortative} if every agent is not single ,and for any $(i, j) \in \mathcal{M}$, $i, j \in G_w$ for some $w=1, 2, ..., W$.
+\end{definition}
+
+\begin{theorem} \label{thm:assort}
+If for any $w \ne w'$, there exist $(s_w, \hat{s}_{w}) \in NE_{ww}^{LB}$ and $(s_{w'}, \hat{s}_{w'}) \in NE_{w'w'}^{LB}$ that satisfy  
+\begin{eqnarray}
+    \min\{\pi_{ww}(s_w, \hat{s}_{w}), \pi_{ww}(\hat{s}_{w}, s_w)\} &\ge& \max\{r_w, \pi_{ww'}(s, s')\}, \text{ or } \nonumber \\
+      \min\{\pi_{w'w'}(s_{w'}, \hat{s}_{w'}), \pi_{w'w'}(\hat{s}_{w'}, s_{w'})\} &\ge& \max\{r_w', \pi_{w'w}(s', s)\}, \text{ or both},\nonumber
+\end{eqnarray}
+for any $(s, s') \in NE_{ww'}$, then there exists a myopic Nash stable matching $(\mathcal{M}, \mathcal{S}^*)$ in which $\mathcal{M}$ is assortative. 
+\end{theorem}
+\noindent \textit{Proof:}
+Let $(\mathcal{M}, \mathcal{S}^*)$ satisfy that $\mathcal{M}$ is assortative, and for any $i, j \in G_w$ and $(i, j) \in \mathcal{M}$, let $(s_i^*, s_j^*)=(s_w, \hat{s}_{w})$. Then according to Definition \ref{def:blocking} (d), there is no cross-type blocking pair. Since every matched pair is playing a loser-best Nash equilibrium, according to Theorem \ref{thm:LB'}, there is no within-type blocking. Since every loser-best Nash equilibrium is Pareto efficient, there is no within-pair blocking according to Theorem \ref{thm:pareto}. Also, individual rationality is satisfied. Hence, $(\mathcal{M}, \mathcal{S}^*)$ is myopic Nash stable. 
+\textit{Q.E.D.}
+
+\subsection{Sticky Matching}
+Now assume that when two agents are matched, they play the game between them for $T>1$ periods before the next rematching opportunity arrives. 
+
+The entire $T$-period repeated game is denoted by \(\Gamma^T_{ij}\) (interchangeably \(\Gamma^T_{ji}\)). We extend the strategy set of agent $i$ against agent $j$ to $S_i^{\Gamma_{ij}, T}$, containing all possible history-contingent strategies that can be chosen by agent $i$ during the $T$ periods matched with agent $j$. 
+
+Let $\pi_i^{\Gamma_{ij}, T}(s_i, s_j)$ denote agent $i$'s cumulative payoff over the $T$ periods matched with agent $j$ on the equilibrium path. We assume no discounting. Let $R_i=T r_i$ denote the total outside payment agent $i$ can get if she remains single between two rematching opportunities. 
+
+The appropriate solution concept is Subgame perfect equilibrium. Let $SPE_{ij}^{T}$ denote the set of SPEs in \(\Gamma^T_{ij}\). Let $SPE_{ij}^{LB, T}$ denote the set of loser-best SPEs parallel to Definition \ref{def:loser-best}.
+
+Definition \ref{def:outcomet} to \ref{def:stable}, Theorem \ref{thm:pareto} to \ref{thm:assort} all naturally extend to the current setting. We call the stable outcome myopic SPE stable outcome. The interpretation for myopia in this sticky matching environment is that the agents are forward-looking to the extend that they only care about the payoff incentives in the next $T$ periods when they decide if they would like to block. 
+
+\section{The Experimental Game}
+Suppose $N=G_\theta \cup G_\tau$, where $|G_\theta|$ and $|G_\tau|$ are even; $r_\theta=r_\tau=0$, and the pairwise games are given as
+\begin{table}[!ht]
+\centering
+\begin{subtable}{0.32\textwidth}
+\centering
+\begin{tabular}
+[c]{llrc}
+&  & \multicolumn{2}{c}{$\theta$} \\
+&  & \multicolumn{1}{c}{$A$} & $B$ \\\cline{3-4}%
+$\theta$ & $A$ & \multicolumn{1}{|l}{$2,2$} & \multicolumn{1}{|l|}{$0, 0$%
+}\\\cline{3-4}
+& $B$ & \multicolumn{1}{|l}{$0, 0$} & \multicolumn{1}{|l|}{$0, 0$}\\\cline{3-4}%
+\end{tabular}
+\caption{$\Gamma_{\theta\theta}$.}
+\end{subtable}
+\hfill
+\begin{subtable}{0.32\textwidth}
+\centering
+\begin{tabular}
+[c]{llrc}
+&  & \multicolumn{2}{c}{$\tau$} \\
+&  & \multicolumn{1}{c}{$A$} & $B$ \\\cline{3-4}%
+$\theta$ & $A$ & \multicolumn{1}{|l}{$4, 1$} & \multicolumn{1}{|l|}{$0, 0$%
+}\\\cline{3-4}
+& $B$ & \multicolumn{1}{|l}{$0, 0$} & \multicolumn{1}{|l|}{$1, 4$}\\\cline{3-4}%
+\end{tabular}
+\caption{$\Gamma_{\theta\tau}$.}
+\end{subtable}
+\hfill
+\begin{subtable}{0.32\textwidth}
+\centering
+\begin{tabular}
+[c]{llrc}
+&  & \multicolumn{2}{c}{$\tau$} \\
+&  & \multicolumn{1}{c}{$A$} & $B$ \\\cline{3-4}%
+$\tau$ & $A$ & \multicolumn{1}{|l}{$0,0$} & \multicolumn{1}{|l|}{$0, 0$%
+}\\\cline{3-4}
+& $B$ & \multicolumn{1}{|l}{$0, 0$} & \multicolumn{1}{|l|}{$2, 2$}\\\cline{3-4}%
+\end{tabular}
+\caption{$\Gamma_{\tau\tau}$.}
+\end{subtable}
+
+\caption{The experiment game with immediate Rematching.}
+\end{table}
+
+We can think of $\theta$ and $\tau$ as two cultural types. Agents who share a cultural type also share a common norm of play, which allows them to coordinate easily. However, cross-cultural match exhibits a conflict of interest.
+
+First, consider the case of immediate rematching, that is, $T=1$. Also, we start by assuming that the market is thin: $N=\{1, 2, 3, 4\}$, $G_\theta=\{1, 2\}$, and $G_\tau=\{3, 4\}$. 
+
+\begin{proposition} \label{prop: thin, T=1}
+The myopic Nash stable outcomes are $\big(\tilde{\mathcal{M}}=\{(1, 2), (3, 4)\}, \tilde{\mathcal{S}}^*=\{(A, A), (B, B)\}\big)$, $\big(\hat{\mathcal{M}}=\{(1, 4), (2, 3)\}, \hat{\mathcal{S}}^*=\{(A, A), (B, B)\}\big)$, $\big(\bar{\mathcal{M}}=\{(1, 4), (2, 3)\}, \bar{\mathcal{S}}^*=\{(B, B), (A, A)\}\big)$, 
+$\big(\hat{\mathcal{M}'}=\{(1, 3), (2, 4)\}, \hat{\mathcal{S}}^{*'}=\{(A, A), (B, B)\}\big)$, and $\big(\bar{\mathcal{M}}'=\{(1, 3), (2, 4)\} \bar{\mathcal{S}}^{*'}=\{(B, B), (A, A)\}\big)$.
+
+\end{proposition}
+\noindent \textit{Proof:} By directly applying Theorem \ref{thm:assort}, $(\tilde{\mathcal{M}}, \tilde{\mathcal{S}}^*)$ is stable. It is also straightforward to check that $(\hat{\mathcal{M}}, \hat{\mathcal{S}}^*)$, $(\bar{\mathcal{M}}, \bar{\mathcal{S}}^{*})$, $(\hat{\mathcal{M}}, \hat{\mathcal{S}}^*)$ and $(\bar{\mathcal{M}}', \bar{\mathcal{S}}^{*'})$ are stable.
+
+Next, we prove that no other outcome is stable. First, if $(1, 2) \in \mathcal{M}$ for some stable outcome $(\mathcal{M}, \mathcal{S}^*)$, then $(s_1^*, s_2^*) \in \mathcal{S}^*$ must be $(A, A)$ according to Theorem \ref{thm:pareto}. Same logic applies to $(3, 4)$. Hence, we have a unique stable outcome that exhibits assortative matching. 
+
+Second, the outcome with single agents (since $|N|$ is even, we can either have 0, 2 or 4 single agents in a matching profile) cannot be stable because any two of them can get positive payoffs by forming a pair.
+
+Third, suppose there exists a pair of cross-type matching in a stable outcome, say $(2, 3) \in \mathcal{M}$. According to internal stability, they must either play $(A, A)$ or $(B, B)$. %($(4/5A+1/5B, 1/5A+4/5B)$ is Pareto dominated by both of them so it cannot be played in a stable outcome). 
+Without loss of generality, suppose they play $(B, B)$ and agent $1$ and $4$ are matched to play $(B, B)$, then agent $1$ and $2$ have an incentive to form a block pair by playing $(A, A)$. \textit{Q.E.D.}.
+\\
+
+Proposition \ref{prop: thin, T=1} shows that there are two types of stable outcomes: 1)assortative matching with each same-type match plays their preferred Nash equilibrium; 2) complete cross-type matching with one pair playing $(A, A)$ and the other playing $(B, B)$. The cross-type matching outcomes are stable because the two losers (those earning 1) belong to different types, so neither can find a same-type partner to form a blocking pair. As a result, they remain trapped in matches that are unfavorable to them.
+
+Intuitively, if the market becomes thicker, it is more likely for those losers to form same-type blocking pairs. We have the following result:
+
+\begin{proposition} \label{prop: thicker, T=1}
+Suppose $|G_\theta|\ge 4$ and $|G_\tau|\ge 4$, then in any myopic Nash stable outcome $(\mathcal{M}, \mathcal{S}^*)$, there cannot be more than two pairs of cross-type matches in $\mathcal{M}$.  \end{proposition}
+\noindent \textit{Proof:} Suppose there are at least three pairs of cross-type matches $(\mathcal{M}, \mathcal{S}^*)$, then at least two pairs play the same equilibrium: either $(A, A)$ or $(B, B)$. Without loss of generality, suppose two pairs both play $(A, A)$. Then the $\tau$-type agents in both pairs have an incentive to form a blocking pair to play $(B, B)$. \textit{Q.E.D.}
+\\
+
+Proposition \ref{prop: thicker, T=1} demonstrates that although thicker market cannot completely prevent cross-type matches to form, there can be at most two cross-type matches in any stable outcome. Hence, we should expect that the non-assortative matching profiles become more assortative (the percentage of same-type matches increases) as the market gets thicker. 
+
+Next, consider the case of sticky matching with $T=2$. In this case, $\Gamma_{\theta, \theta}^2$ has multiple SPEs delivering either $(4, 4)$ (coordinating on their culturally preferred equilibrium twice) and $(2, 2)$ (coordinating on their culturally preferred equilibrium once) in cumulative payoffs. The same conclusion applies to  $\Gamma_{\tau,\tau}^2$. $\Gamma_{\theta,\tau}^2$ has multiple SPEs delivering either $(8, 2)$ (coordinating on $(A, A)$ twice) or $(2, 8)$ (coordinating on $(B, B)$ twice) or $(5, 5)$ (alternating between $(A, A)$ and $(B, B)$) in cumulative payoffs.
+
+\begin{proposition} \label{prop: T=2}
+Assortative matching cannot be supported in myopic SPE stable outcome. For any myopic SPE stable outcome $(\mathcal{M}, \mathcal{S}^*)$, there cannot be more than one pair of cross-type matches in $\mathcal{M}$ who plays a SPE that results in cumulative payoffs of either $(8, 2)$ or $(2, 8)$.  \end{proposition}
+\noindent \textit{Proof:} First, suppose that there exist $i, j \in G_\theta$ and $k, l \in G_\tau$, such that $(i, j), (k, l) \in \mathcal{M}$ in a myopic SPE stable outcome $(\mathcal{M}, \mathcal{S}^*)$. $(s_i^*, s_j^*)$ and $(s_k^*, s_l^*)$ must both be SPEs that result in cumulative payoffs of $(4, 4)$ according to Theorem \ref{thm:pareto}. Then $i$ (or $j$) has an incentive to form a blocking pair with $k$ (or $l$) to play a SPE that results in  cumulative payoffs of $(5, 5)$.
+
+Second, suppose $i, j \in G_\theta$, $k , l\in G_\tau$, and $(i, k), (j, l) \in \mathcal{M}$ in a myopic SPE stable outcome $(\mathcal{M}, \mathcal{S}^*)$. 
+\begin{itemize}
+\item[(i)] If both $(s_i^*, s_k^*)$ and $(s_j^*, s_l^*)$ result in cumulative payoffs of $(8, 2)$, then $k$ and $l$ have an incentive to form a blocking pair to play a SPE that results in  cumulative payoffs of $(4, 4)$. The same logic applies to the case that both $(s_i^*, s_k^*)$ and $(s_j^*, s_l^*)$ result in cumulative payoffs of $(2, 8)$.
+\item[(ii)] If $(s_i^*, s_k^*)$ results in cumulative payoffs of $(8, 2)$ and $(s_j^*, s_l^*)$ results in cumulative payoffs of $(2, 8)$, then $j$ and $k$ have an incentive to form a blocking pair to play a SPE that results in  cumulative payoffs of $(5, 5)$. This reflects Theorem \ref{thm:LB}. The same logic applies to the case that $(s_i^*, s_j^*)$ results in cumulative payoffs of $(2, 8)$ and $(s_k^*, s_l^*)$ results in cumulative payoffs of $(8, 2)$.
+\end{itemize}
+\textit{Q.E.D.}
+\\
+
+Proposition \ref{prop: T=2} demonstrates that when $T=2$, the match-to-interact process would result in the maximum number of cross-type matches (when $|G_\theta|=|G_\tau|$, there will be no same-type matches). Moreover, among all cross-type matches, there can be at most one pair who plays some SPE that results in asymmetric cumulative payoffs of $(2, 8)$ or $(8, 2)$, while the rest all play SPEs that result in asymmetric cumulative payoffs of $(5, 5)$. This also implies that as the market gets thicker, the percentage of $(5, 5)$ increases. 
+
+Compared to the immediate rematching case, sticky matching reverses the pattern of assortative matching and increases welfare as it allows the formation of cross-type matches which can achieve higher payoffs by alternating. 
+
+\section{Experimental Design and Hypotheses}
+Consider a $2\times 2$ design. Along one dimension, we vary the stickiness of matching from $T=1$ to $T=2$. Along the other dimension, we vary the market size from $4$ (i.e., $|G_\theta|=|G_\tau|=2$) to $8$ (i.e., $|G_\theta|=|G_\tau|=4$).
+
+\begin{hypothesis}
+The number of cross-type matches is higher under sticky matching than under immediate rematching.
+\end{hypothesis}
+
+\begin{hypothesis}
+The average per-period average payoff is higher under sticky matching than under immediate rematching.
+\end{hypothesis}
+
+\begin{hypothesis}
+The percentage of same-type matches increases under immediate rematching as the market gets thicker. 
+\end{hypothesis}
+
+\begin{hypothesis}
+The percentage of cross-type matches increases under sticky matches as the market gets thicker. 
+\end{hypothesis}
+\end{document}
